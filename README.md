@@ -11,7 +11,7 @@ This application has two sides
 
 Sample Usecase
 ----------------------
-####Customer side
+#### Customer side
 1. Open website
 2. Login to site
 2. Choose restaurant
@@ -22,7 +22,7 @@ Sample Usecase
 7. Place order
 >Payment is not considered
 
-####Management side
+#### Management side
 1. Open website
 2. Login to site
 3. Add food items to menu

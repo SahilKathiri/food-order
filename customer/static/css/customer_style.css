@@ -1,0 +1,31 @@
+.base_header, .base_main, .base_footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  .base_header, .base_main, .base_footer {
+    padding-left: 0;
+  }
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+label {
+  font-size: 1.3rem;
+  color: #797979;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
