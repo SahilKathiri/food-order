@@ -6,5 +6,50 @@
 {% endblock %}
 
 {% block main_block %}
-    <h1>Restaurant Page!</h1>
+    <div class="row" style="padding-top: 50px">
+        <div class="col s6 m6 l6" align="center">
+            <h5>{{ restaurant_name }}'s Menu</h5>
+        </div>
+        <div class="col s6 m6 l6">
+            <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add new Item" href="{% url 'restaurant:add_food_item' %}" class="top-menu"><i class="material-icons left">business</i>Add Item</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s0 m2 l1"></div>
+        <div class="col s12 m8 l10">
+            <div class="row">
+                <div class="input-field col offset-s6 offset-m6 offset-l6 s6 m6 l6">
+                    <i class="material-icons prefix">search</i>
+                    <label for="table_search">Search Food</label>
+                    <input id="table_search" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <table id="search_table" class="bordered highlight centered">
+                    <thead>
+                        <tr>
+                            <th>Sl.no</th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Times Ordered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in food_items %}
+                            <tr style="border-bottom-color: white;line-height: 4;border-top-color: grey;border-top-width: thick;">
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{% url 'restaurant:edit_food_item' item.id %}">{{ item.name }}</a></td>
+                                <td>{{ item.price }}</td>
+                                <td>{{ item.times_ordered }}</td>
+                            </tr>
+                            <tr style="border-bottom-width: thick;border-bottom-color: grey;">
+                                <td colspan="4">{{ item.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col s0 m2 l1"></div>
+    </div>
 {% endblock %}

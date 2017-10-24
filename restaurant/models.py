@@ -30,8 +30,9 @@ class Restaurant(models.Model):
 class FoodItem(models.Model):
     name = models.CharField("Name", max_length=50)
     price = models.FloatField("Price")
-    restaurant = models.ForeignKey(Restaurant)
-    description = models.TextField()
+    restaurant = models.ForeignKey(Restaurant, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    times_ordered = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return "{0} - {1} {2}".format(self.name, self.restaurant.user.first_name,

@@ -10,3 +10,8 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Password",
                                 widget=forms.PasswordInput(
                                         attrs={'placeholder': 'Password'}))
+
+class FoodItemForm(forms.ModelForm):
+    class Meta:
+        model = FoodItem
+        exclude = ['restaurant', 'times_ordered']

@@ -1,0 +1,52 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block header_title %}
+    {% if deletable %}
+        <title>Edit Food Item</title>
+    {% else %}
+        <title>Add new Food Item</title>
+    {% endif %}
+{% endblock %}
+
+{% block main_block %}
+    <div class="row">
+        <div class="col s0 m2 l1"></div>
+        <div class="col s12 m8 l10">
+            {% if deletable %}
+                <h1>Edit Food Item</h1>
+            {% else %}
+                <h1>New Food Item</h1>
+            {% endif %}
+            <form method="POST" class="post-form">
+                {%csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+                {% if deletable %}
+                    <a id="confirm-delete-btn" href="#confirm-delete" class="btn red" >Delete</a>
+
+                    <div id="confirm-delete" class="modal">
+                        <div class="modal-content">
+                            <h4>Delete Food Item?</h4>
+                            <p>Are you sure you want to delete this item?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'restaurant:delete_food_item' initial.id %}" class="modal-action waves-effect waves-red red btn">Delete</a>
+                            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#confirm-delete-btn').click(function () {
+                $('#confirm-delete').openModal();
+            });
+        });
+    </script>
+{% endblock %}
