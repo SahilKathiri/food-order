@@ -7,4 +7,10 @@ app_name = 'restaurant'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+
+    # Authentication
+    url(r'^login/$', views.restaurant_login, name='restaurant_login'),
+    url(r'^auth/$', views.restaurant_auth, name='restaurant_auth'),
+    url(r'^logout/$', views.restaurant_logout, name='restaurant_logout'),
+
 ]

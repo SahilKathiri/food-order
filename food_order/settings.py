@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Packages
+    'carton',
+
+    # User apps
     'restaurant',
     'customer',
     'django_extensions',
@@ -141,3 +145,7 @@ MAX_UPLOAD_SIZE = 5242880 # 5MB
 
 LOGIN_URL="/login/"
 LOGOUT_REDIRECT_URL="/"
+
+
+# Django Carton
+CART_PRODUCT_MODEL = 'restaurant.models.FoodItem'
