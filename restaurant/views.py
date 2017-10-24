@@ -2,13 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.contenttypes.models import ContentType
 from django.forms.models import model_to_dict
 from django.contrib import messages
 
 from .models import Restaurant, FoodItem
 
-from .forms import LoginForm, FoodItemForm
+from .forms import LoginForm, FoodItemForm, RestaurantProfileForm
 
 
 def restaurant_login(request):
@@ -53,6 +52,29 @@ def index(request):
     context_dict['restaurant_name'] = restaurant_name
     context_dict['food_items'] = food_items
     return render(request, 'restaurant/index.html', context_dict)
+
+@login_required()
+@permission_required('restaurant.view_restaurant_portal')
+def edit_profile(request):
+    username = request.user.username
+    instance = Restaurant.objects.get(user__username=username)
+    if request.method == "POST":
+        form = RestaurantProfileForm(request.POST, instance=instance)
+        if form.is_valid():
+            instance.phone_no = form.cleaned_data['phone_no']
+            instance.address_1 = form.cleaned_data['address_1']
+            instance.address_2 = form.cleaned_data['address_2']
+            instance.address_emirate = form.cleaned_data['address_emirate']
+            instance.save()
+            messages.success(request, 'Profile Edited')
+            return redirect('restaurant:index')
+    else:
+        form = RestaurantProfileForm(initial=model_to_dict(instance))
+
+    context_dict = {}
+    context_dict['initial'] = instance
+    context_dict['form'] = form
+    return render(request, 'restaurant/profile.html', context_dict)
 
 @login_required()
 @permission_required('restaurant.view_restaurant_portal')

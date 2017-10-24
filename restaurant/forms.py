@@ -15,3 +15,13 @@ class FoodItemForm(forms.ModelForm):
     class Meta:
         model = FoodItem
         exclude = ['restaurant', 'times_ordered']
+
+class RestaurantProfileForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(RestaurantProfileForm, self).__init__(*args, **kwargs)
+        self.fields["address_emirate"].widget.attrs['style'] = 'display: block'
+
+    class Meta:
+        model = Restaurant
+        exclude = ['user']

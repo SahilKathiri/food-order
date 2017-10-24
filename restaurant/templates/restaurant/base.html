@@ -23,14 +23,14 @@
                     <a style="padding-left: 50px" href="{% url 'restaurant:index' %}" class="brand-logo">Food Order</a>
                     <ul class="right hide-on-med-and-down" style="padding-right: 50px">
                         <li><a href="{% url 'restaurant:index' %}"><i class="material-icons left">home</i>Home</a></li>
-                        <li><a href="#!" class="dropdown-button" data-activates="profile_dropdown" style="padding-left: 30px"><i class="material-icons left">home</i>Profile</a></li>
+                        <li><a href="{% url 'restaurant:edit_profile' %}" class="dropdown-button" data-activates="profile_dropdown" style="padding-left: 30px"><i class="material-icons left">home</i>Profile</a></li>
                     </ul>
                 </div>
             </nav>
             <ul id="slide-out" class="side-nav fixed" style="transform: translateX(-100%);">
                 <li><a class="waves-effect" href="{% url 'restaurant:index' %}"><i class="material-icons ">dashboard</i>Home</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="waves-effect" href="{% url 'restaurant:index' %}"><i class="material-icons ">dashboard</i>Profile</a></li>
+                <li><a class="waves-effect" href="{% url 'restaurant:edit_profile' %}"><i class="material-icons ">dashboard</i>Profile</a></li>
                 <li><a class="waves-effect" href="{% url 'restaurant:restaurant_logout' %}"><i class="material-icons ">dashboard</i>Log out</a></li>
             </ul>
         </header>
