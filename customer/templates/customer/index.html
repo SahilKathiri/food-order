@@ -6,5 +6,16 @@
 {% endblock %}
 
 {% block main_block %}
-    <h1>Customer Page!</h1>
+    <div class="row">
+        <div class="col offset-s2 s8 offset-m3 m6 offset-l3 l6">
+            <h1>{{ customer.name }}'s Dashboard</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s2 s8 offset-m3 m6 offset-l3 l6">
+            <h4>Please select a restaurant from the menu.</h4>
+            <h4>Select a food item from the restaurant's menu and add it to cart</h4>
+            <h4>Checkout your cart after confirming its contents. Payment is assumed to be completed during checkout</h4>
+        </div>
+    </div>
 {% endblock %}

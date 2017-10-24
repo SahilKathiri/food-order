@@ -1,0 +1,41 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block header_title %}
+    <title>{{ food_item.name }} @ {{ restaurant.name }}</title>
+{% endblock %}
+
+{% block main_block %}
+    <div class="row" style="padding-top: 50px">
+        <div class="col s6 m6 l6" align="center">
+            <h3>{{ food_item.name }} @ {{ restaurant.name }}</h3>
+        </div>
+        <div class="col s6 m6 l6" align="center">
+            <a class="waves-effect waves-light btn" href="{% url 'customer:add_to_cart' restaurant.id food_item.id %}"><i class="material-icons left">note</i>Add to Cart</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s0 m2 l3"></div>
+        <div class="col s12 m8 l6">
+            <table class="centered highlight">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ food_item.name }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ food_item.price }}</td>
+                </tr>
+                <tr>
+                    <th>restaurant</th>
+                    <td><a href="{% url 'customer:restaurant_view' restaurant.id %}"></a>{{ restaurant.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ food_item.description }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col s0 m2 l3"></div>
+    </div>
+{% endblock %}

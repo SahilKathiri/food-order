@@ -16,8 +16,17 @@ class Restaurant(models.Model):
     phone_no = models.CharField("Phone Number", max_length=20)
     address_1 = models.CharField("Address Line 1", max_length=50)
     address_2 = models.CharField("Address Line 2", max_length=50)
-    address_emirate = models.CharField("Emirate", max_length=3, choices=EMIRATE_CHOICE)
+    address_emirate = models.CharField("Emirate", max_length=3,
+                                        choices=EMIRATE_CHOICE)
 
+    @property
+    def name(self):
+        return "{0} {1}".format(self.user.first_name, self.user.last_name)
+
+    @property
+    def address(self):
+        return "{0}, {1}, {2}, UAE".format(self.address_1, self.address_2,
+                                        self.address_emirate)
 
     def __str__(self):
         return "{0} {1}".format(self.user.first_name, self.user.last_name)

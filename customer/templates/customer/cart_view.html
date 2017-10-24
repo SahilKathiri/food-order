@@ -1,0 +1,77 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block header_title %}
+    <title>Your Cart</title>
+{% endblock %}
+
+{% block main_block %}
+    <div class="row" style="padding-top: 50px">
+        <div class="col s6 m6 l6" align="center">
+            <h5>Your Cart</h5>
+            <h6>Your Total: {{ cart.total }}</h6>
+        </div>
+        <div class="col s6 m6 l6">
+            <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Clear your cart" href="{% url 'customer:cart_clear' %}" class="top-menu"><i class="material-icons left">business</i>Clear Cart</a>
+            <a class="btn green tooltipped" id="confirm-checkout-btn" data-position="bottom" data-delay="50" data-tooltip="Proceed to Checkout" href="#" class="top-menu"><i class="material-icons left">business</i>Checkout</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s0 m2 l1"></div>
+        <div class="col s12 m8 l10">
+            <div class="row">
+                <div class="input-field col offset-s6 offset-m6 offset-l6 s6 m6 l6">
+                    <i class="material-icons prefix">search</i>
+                    <label for="table_search">Search Cart</label>
+                    <input id="table_search" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <table id="search_table" class="bordered highlight centered">
+                    <thead>
+                    <tr>
+                        <th>Sl.no</th>
+                        <th>Name</th>
+                        <th>Price (AED)</th>
+                        <th>Quantity</th>
+                        <th>Price per Item (AED)</th>
+                        <th>Restaurant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart.items %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'customer:food_item_view' item.product.restaurant.id item.product.id %}">{{ item.product.name }}</a></td>
+                            <td>{{ item.subtotal }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td><a href="{% url 'customer:restaurant_view' item.product.restaurant.id %}">{{ item.product.restaurant.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s0 m2 l1"></div>
+        <div id="confirm-checkout" class="modal">
+            <div class="modal-content">
+                <h4>Checkout?</h4>
+                <p>You are about to pay AED {{ cart.total }} for {{ cart.count }} items. Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'customer:checkout' %}" class="modal-action waves-effect waves-red green btn">Yes, Checkout</a>
+                <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#confirm-checkout-btn').click(function () {
+                $('#confirm-checkout').openModal();
+            });
+        });
+    </script>
+{% endblock %}

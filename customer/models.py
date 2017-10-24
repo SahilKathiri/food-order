@@ -22,6 +22,10 @@ class Customer(models.Model):
     def __str__(self):
         return "{0} {1}".format(self.user.first_name, self.user.last_name)
 
+    @property
+    def name(self):
+        return "{0} {1}".format(self.user.first_name, self.user.last_name)
+
     class Meta:
         permissions = (
             ('view_customer_portal', "Can view customer portal"),

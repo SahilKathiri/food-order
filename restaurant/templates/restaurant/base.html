@@ -12,8 +12,8 @@
     <body>
         <header class="base_header">
             <ul id="profile_dropdown" class="dropdown-content">
-                <li><a href="#"><i class="tiny material-icons left">person</i>Profile</a></li>
-                <li><a href="#"><i class="tiny material-icons left">exit_to_app</i>Log Out</a></li>
+                <li><a href="{% url 'restaurant:edit_profile' %}"><i class="tiny material-icons left">person</i>Profile</a></li>
+                <li><a href="{% url 'restaurant:restaurant_logout' %}"><i class="tiny material-icons left">exit_to_app</i>Log Out</a></li>
             </ul>
             <nav>
                 <div class="nav-wrapper red darken-3">

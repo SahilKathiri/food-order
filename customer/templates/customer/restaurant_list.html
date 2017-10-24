@@ -1,0 +1,51 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block header_title %}
+    <title>Restaurant List</title>
+{% endblock %}
+
+{% block main_block %}
+    <div class="row" style="padding-top: 50px">
+        <div class="col s6 m6 l6" align="center">
+            <h5>Restaurants List</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s0 m2 l1"></div>
+        <div class="col s12 m8 l10">
+            <div class="row">
+                <div class="input-field col offset-s6 offset-m6 offset-l6 s6 m6 l6">
+                    <i class="material-icons prefix">search</i>
+                    <label for="table_search">Search Food</label>
+                    <input id="table_search" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <table id="search_table" class="bordered highlight centered">
+                    <thead>
+                    <tr>
+                        <th>Sl.no</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Emirate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for restaurant in restaurant_list %}
+                        <tr style="border-bottom-color: white;line-height: 4;border-top-color: grey;border-top-width: thick;">
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'customer:restaurant_view' restaurant.id %}">{{ restaurant.name }}</a></td>
+                            <td>{{ restaurant.phone_no }}</td>
+                            <td>{{ restaurant.address_emirate }}</td>
+                        </tr>
+                        <tr style="border-bottom-width: thick;border-bottom-color: grey;">
+                            <td colspan="4">{{ restaurant.address }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s0 m2 l1"></div>
+    </div>
+{% endblock %}

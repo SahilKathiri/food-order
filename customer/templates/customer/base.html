@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load carton_tags %}
+{% get_cart as cart %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,7 +15,7 @@
         <header class="base_header">
             <ul id="profile_dropdown" class="dropdown-content">
                 <li><a href="#"><i class="tiny material-icons left">person</i>Profile</a></li>
-                <li><a href="#"><i class="tiny material-icons left">exit_to_app</i>Log Out</a></li>
+                <li><a href="{% url 'customer:customer_logout' %}"><i class="tiny material-icons left">exit_to_app</i>Log Out</a></li>
             </ul>
             <nav>
                 <div class="nav-wrapper blue darken-3">
@@ -23,15 +25,15 @@
                     <a style="padding-left: 50px" href="{% url 'customer:index' %}" class="brand-logo">Food Order</a>
                     <ul class="right hide-on-med-and-down" style="padding-right: 50px">
                         <li><a href="{% url 'customer:index' %}"><i class="material-icons left">home</i>Home</a></li>
-                        <li><a href="{% url 'customer:index' %}"><i class="material-icons left">home</i>Your Cart</a></li>
+                        <li><a href="{% url 'customer:cart_view' %}"><i class="material-icons left">home</i>Your Cart ({{ cart.count }})</a></li>
                         <li><a href="#!" class="dropdown-button" data-activates="profile_dropdown" style="padding-left: 30px"><i class="material-icons left">home</i>Profile</a></li>
                     </ul>
                 </div>
             </nav>
             <ul id="slide-out" class="side-nav fixed" style="transform: translateX(-100%);">
                 <li><a class="waves-effect" href="{% url 'customer:index' %}"><i class="material-icons ">dashboard</i>Home</a></li>
-                <li><a class="waves-effect" href="{% url 'customer:index' %}"><i class="material-icons ">dashboard</i>Restaurants</a></li>
-                <li><a class="waves-effect" href="{% url 'customer:index' %}"><i class="material-icons ">dashboard</i>Your Cart</a></li>
+                <li><a class="waves-effect" href="{% url 'customer:restaurant_list' %}"><i class="material-icons ">dashboard</i>Restaurants</a></li>
+                <li><a class="waves-effect" href="{% url 'customer:cart_view' %}"><i class="material-icons ">dashboard</i>Your Cart ({{ cart.count }})</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="waves-effect" href="{% url 'customer:index' %}"><i class="material-icons ">dashboard</i>Profile</a></li>
                 <li><a class="waves-effect" href="{% url 'customer:customer_logout' %}"><i class="material-icons ">dashboard</i>Log out</a></li>
@@ -72,6 +74,14 @@
         <script type="text/javascript" src="{% static 'js/customer_init.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/datepicker.js' %}"></script>
+
+        {% if messages %}
+            <script type="text/javascript">
+                {% for message in messages %}
+                    Materialize.toast('{{ message }}', 3000);
+                {% endfor %}
+            </script>
+        {% endif %}
 
         {% block scripts %}
         {% endblock %}
