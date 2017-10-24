@@ -137,3 +137,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media')
 
 # Setting the maximum upload size
 MAX_UPLOAD_SIZE = 5242880 # 5MB
+
+
+LOGIN_URL="/login/"
+LOGOUT_REDIRECT_URL="/"

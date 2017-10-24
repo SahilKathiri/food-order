@@ -1,0 +1,74 @@
+<!DOCTYPE html> {% load static %}
+
+<html>
+
+<head>
+
+    <title>Food Order</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer_style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <nav class="blue" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="black-text brand-logo">Food Order</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="col m4 l8">
+            </div>
+            <div class="container col s12 m8 l4">
+                <form class="container" id="login_form" method="post" action="{% url 'customer:customer_auth' %}">
+                    {% csrf_token %}
+                    <h4>Login</h4>
+                    {{ form.as_p }}
+                    <button class="btn waves-effect waves-light" type="submit" name="action" value="submit">Login
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="base_footer page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">PwC</h5>
+                    <p class="grey-text text-lighten-4">Interview Assignment</p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Some links</h5>
+                    <ul>
+                        <li><a class="white-text" href="#">Link #1</a></li>
+                        <li><a class="white-text" href="#">Link #2</a></li>
+                        <li><a class="white-text" href="#">Link #3</a></li>
+                        <li><a class="white-text" href="#">Link #4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright" style="background-color: #22374f">
+            <div class="container">
+                Designed and developed by <a class="white-text" href="https://github.com/sahil-mohd/" target="_blank">Sahil</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
